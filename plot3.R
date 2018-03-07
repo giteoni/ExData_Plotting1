@@ -27,13 +27,12 @@ data <- read.table(fname, header = TRUE, sep = ";", na.strings = "?")
 sub <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 dt <- strptime(paste(sub$Date, sub$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
 
-data3 <- as.numeric(sub$Sub_metering_3)
-data2 <- as.numeric(sub$Sub_metering_2)
-data1 <- as.numeric(sub$Sub_metering_1)
-
 #Plot 3
+data1 <- as.numeric(sub$Sub_metering_1)
 plot(dt, data1, type="l", ylab="Energy Submetering", xlab="")
+data2 <- as.numeric(sub$Sub_metering_2)
 lines(dt, data2, type="l", col="red")
+data3 <- as.numeric(sub$Sub_metering_3)
 lines(dt, data3, type="l", col="blue")
 legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), 
 	col=c("black", "red", "blue"),  lty=1, lwd=2)
