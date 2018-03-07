@@ -1,24 +1,19 @@
-#####################################################################################################
-#Exploratory Data Analysis (Coursera)
-#Course Project 1
-#Plot 3
-#Mykhal Gideoni Mangada
-#####################################################################################################
-
 #clear contents 
 rm(list = ls())
 
-#specify URL and download file
+#Specify file name
+fname <- "household_power_consumption.txt"
+
+if (!file.exists(fname)){
+ #specify URL and download file
 file_url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 dl_file <- download.file(file_url,destfile = "tmp")
-
 unzip("tmp")    #extract files
 unlink("tmp")   #delete file
+}
 
-#Specify file name to be accessed, 
-#then read and store in a variable
-file_name <- "household_power_consumption.txt"
-data <- read.table(file_name, header = TRUE, sep = ";", na.strings = "?")
+#Read and store in a variable
+data <- read.table(fname, header = TRUE, sep = ";", na.strings = "?")
 
 #concatenate date and time, 
 #then convert to representable date and time
