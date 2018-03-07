@@ -28,6 +28,9 @@ sub <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 datetime <- strptime(paste(sub$Date, sub$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
 
 #Plot 4
+#Save plot to PNG file
+png("plot4.png", width = 480, height = 480)
+
 #Make a 2x2 plot area to accommodate 4 plots
 par(mfrow = c(2, 2)) 
 
@@ -52,6 +55,4 @@ legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=
 grp <- as.numeric(sub$Global_reactive_power)
 plot(datetime, grp, type="l", xlab="datetime", ylab="Global_reactive_power")
 
-#Save plot to PNG file
-dev.copy(png, file = "plot4.png", height = 480, width = 480)
 dev.off()
