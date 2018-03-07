@@ -31,12 +31,9 @@ data$Date <- as.Date(data$Date, "%d/%m/%Y")
 sub <- subset(data, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"))
 
 # Plot 1
-attach(data)
-
 hist(sub$Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)", 
      ylab = "Frequency", main = "Global Active Power", breaks = 13, ylim = c(0,1300), xlim = c(0, 8))
 
 # Save file
 dev.copy(png, file = "plot1.png", height = 480, width = 480)
 dev.off()
-detach(data)
