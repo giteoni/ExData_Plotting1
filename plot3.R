@@ -25,17 +25,17 @@ data <- read.table(fname, header = TRUE, sep = ";", na.strings = "?")
 #concatenate date and time, 
 #then convert to representable date and time
 sub <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
-dt <- strptime(paste(sub$Date, sub$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
+datetime <- strptime(paste(sub$Date, sub$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
 
 #Plot 3
-data1 <- as.numeric(sub$Sub_metering_1)
-plot(dt, data1, type="l", ylab="Energy Submetering", xlab="")
-data2 <- as.numeric(sub$Sub_metering_2)
-lines(dt, data2, type="l", col="red")
-data3 <- as.numeric(sub$Sub_metering_3)
-lines(dt, data3, type="l", col="blue")
-legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), 
-	col=c("black", "red", "blue"),  lty=1, lwd=2)
 #Save plot to PNG file
-dev.copy(png, file = "plot3.png", height = 480, width = 480)
+png("plot3.png", width=480, height=480)
+data1 <- as.numeric(sub$Sub_metering_1)
+plot(datetime, data1, type="l", ylab="Energy Submetering", xlab="")
+data2 <- as.numeric(sub$Sub_metering_2)
+lines(datetime, data2,  col="red")
+data3 <- as.numeric(sub$Sub_metering_3)
+lines(datetime, data3,  col="blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), 
+	col=c("black", "red", "blue"),  lty=1, lwd=1)
 dev.off()
