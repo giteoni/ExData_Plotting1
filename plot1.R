@@ -24,13 +24,13 @@ data <- read.table(file_name, header = TRUE, sep = ";", na.strings = "?")
 #then convert to representable date and time
 data$dt <- strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%M:%S")
 
-#Conveert to class Date
+#Convert to class Date
 data$Date <- as.Date(data$Date, "%d/%m/%Y")
 
 #Store subset of data meeting the specified condition
 sub <- subset(data, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"))
 
-# Plot 1
+#Plot 1
 hist(sub$Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)", 
      ylab = "Frequency", main = "Global Active Power", breaks = 13, ylim = c(0,1300), xlim = c(0, 8))
 
